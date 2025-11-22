@@ -114,16 +114,43 @@
         #info {
             display: none;
             position: fixed;
-            top: 20%;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
+
             background: white;
             padding: 20px;
             border: 2px solid #4CAF50;
             border-radius: 10px;
-            max-width: 500px;
-            z-index: 1000;
+
+            width: 70vw;
+            /* Popup darf fast ganze Breite nutzen */
             max-height: 80vh;
+            /* Höhe bleibt begrenzt */
+            overflow-y: auto;
+            /* Scrollbar bei Bedarf */
+            z-index: 1000;
+        }
+
+        /* Inhalt nebeneinander */
+        .info-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Bild links */
+        .info-img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+
+        /* Text rechts */
+        .info-text {
+            width: 60%;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         #info img {
@@ -165,28 +192,32 @@
 
         <!-- POPUP -->
         <div id="info">
-            <p>
-                Die in diese Grafik gezeigten Messdaten stammen von einer Buche, die im
-                Ebersberger Stadtwald, etwa 120 m vom Museum Wald und Umwelt entfernt steht.
-                In 3 Höhen wurden Sensoren angebracht, die Temperatur und relative Luftfeuchte messen,
-                zum Vergleich gibt es einen Sensor am Museum.
-            </p>
-            <p>
-                Im Oberboden sind 3 Sensoren eingebaut, die neben der Temperatur auch das verfügbare
-                Bodenwasser erfassen. Letzteres als Prozentwert der maximalen Speicherkapazität.
-            </p>
-            <p>
-                Die Messwerte werden alle 20 Minuten per Funk (LoRa) ins Museum gesendet,
-                dort empfangen und über einen Mini-PC ausgewertet.
-            </p>
+            <div class="info-content">
+                <img src="Baum_Sensoren.jpg" alt="Infobild" class="info-img">
 
-            <img src="Baum_Sensoren.jpg" alt="Infobild">
+                <div class="info-text">
+                    <p>
+                        Die in diese Grafik gezeigten Messdaten stammen von einer Buche, die im
+                        Ebersberger Stadtwald, etwa 120 m vom Museum Wald und Umwelt entfernt steht.
+                        In 3 Höhen wurden Sensoren angebracht, die Temperatur und relative Luftfeuchte messen,
+                        zum Vergleich gibt es einen Sensor am Museum.
+                    </p>
+                    <p>
+                        Im Oberboden sind 3 Sensoren eingebaut, die neben der Temperatur auch das verfügbare
+                        Bodenwasser erfassen. Letzteres als Prozentwert der maximalen Speicherkapazität.
+                    </p>
+                    <p>
+                        Die Messwerte werden alle 20 Minuten per Funk (LoRa) ins Museum gesendet,
+                        dort empfangen und über einen Mini-PC ausgewertet.
+                    </p>
 
-            <br><br>
-            <button class="info-button" onclick="document.getElementById('info').style.display='none'">
-                Schließen
-            </button>
+                    <button class="info-button" onclick="document.getElementById('info').style.display='none'">
+                        Schließen
+                    </button>
+                </div>
+            </div>
         </div>
+
 
         <!-- Dein Bild -->
         <img src="image.svg" alt="Talking Tree" class="center-img">
