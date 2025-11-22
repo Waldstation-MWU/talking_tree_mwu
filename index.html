@@ -1,236 +1,219 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talking Tree MWU</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f2f5;
-        color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Tree MWU</title>
 
-    header {
-        background-color: #4CAF50;
-        color: white;
-        padding: 1rem;
-        text-align: center;
-        font-size: 1.8rem;
-        font-weight: bold;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
 
-    .tabs {
-        display: flex;
-        justify-content: center;
-        margin-top: 1rem;
-    }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .tab-button {
-        padding: 0.75rem 1.5rem;
-        margin: 0 0.5rem;
-        border: none;
-        background-color: #e0e0e0;
-        cursor: pointer;
-        font-size: 1rem;
-        border-radius: 5px 5px 0 0;
-        transition: all 0.3s;
-    }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
 
-    .tab-button:hover {
-        background-color: #d4d4d4;
-    }
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            border: none;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
 
-    .tab-button.active {
-        background-color: #ffffff;
-        border-bottom: 2px solid #4CAF50;
-        font-weight: bold;
-    }
+        .tab-button:hover {
+            background-color: #d4d4d4;
+        }
 
-    .tab-content {
-        width: max-content;
-        margin: 0 auto;
-        padding: 1rem 2rem;
-        background-color: #ffffff;
-        border-radius: 0 5px 5px 5px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: all 0.3s;
-    }
+        .tab-button.active {
+            background-color: #ffffff;
+            border-bottom: 2px solid #4CAF50;
+            font-weight: bold;
+        }
 
-    .tab-content.hidden {
-        display: none;
-    }
+        .tab-content {
+            width: max-content;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            background-color: #ffffff;
+            border-radius: 0 5px 5px 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
 
-    /* Ausklapp-Menü Styles */
-    .accordion-button {
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-        padding: 0.5rem 1rem;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 1rem;
-        border-radius: 5px;
-        margin-bottom: 5px;
-        transition: background-color 0.3s;
-    }
+        .tab-content.hidden {
+            display: none;
+        }
 
-    .accordion-button:hover {
-        background-color: #45a049;
-    }
+        .accordion-button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s;
+        }
 
-    .accordion-content {
-        display: none;
-        margin-left: 20px;
-        margin-bottom: 10px;
-    }
+        .accordion-button:hover {
+            background-color: #45a049;
+        }
 
-    .accordion-content ul li {
-        margin: 5px 0;
-    }
+        .accordion-content {
+            display: none;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
 
-    a {
-        color: #4CAF50;
-        text-decoration: none;
-    }
+        .accordion-content ul li {
+            margin: 5px 0;
+        }
 
-    a:hover {
-        text-decoration: underline;
-    }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
 
-    /* Bild zentrieren */
-    .center-img {
-        display: block;
-        margin: 1rem auto;
-        max-height: 80vh;
-    }
-</style>
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .center-img {
+            display: block;
+            margin: 1rem auto;
+            max-height: 80vh;
+        }
+
+        /* Einfaches Popup */
+        #info {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            max-width: 500px;
+            z-index: 1000;
+        }
+
+        #info img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .info-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
+
 <body>
-<header>Talking Tree MWU</header>
+    <header>Talking Tree MWU</header>
 
-<div class="tabs">
-    <button class="tab-button active" data-tab="live">Live-Daten</button>
-    <!-- <button class="tab-button" data-tab="messwerte">Messwerte</button>  -->
-</div>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="live">Live-Daten</button>
+    </div>
 
-<div id="live" class="tab-content">
-    <h2>Live-Daten</h2>
-    <p>Messwerte Buche Ludwigshöhe Ebersberg (stündlich aktualisiert)</p>
-    <img src="image.svg" alt="Talking Tree" class="center-img">
-</div>
+    <div id="live" class="tab-content">
+        <h2>Live-Daten</h2>
+        <p>Messwerte Buche Ludwigshöhe Ebersberg (stündlich aktualisiert)</p>
 
-<div id="messwerte" class="tab-content hidden">
-    <h2>Messwerte</h2>
+        <!-- INFO BUTTON -->
+        <button class="info-button" onclick="document.getElementById('info').style.display='block'">ℹ️ Info</button>
 
-    <!-- Jahr 2025 -->
-<!-- Jahr 2025 -->
+        <!-- POPUP -->
+        <div id="info">
+            <p>
+                Die in diese Grafik gezeigten Messdaten stammen von einer Buche, die im
+                Ebersberger Stadtwald, etwa 120 m vom Museum Wald und Umwelt entfernt steht.
+                In 3 Höhen wurden Sensoren angebracht, die Temperatur und relative Luftfeuchte messen,
+                zum Vergleich gibt es einen Sensor am Museum.
+            </p>
+            <p>
+                Im Oberboden sind 3 Sensoren eingebaut, die neben der Temperatur auch das verfügbare
+                Bodenwasser erfassen. Letzteres als Prozentwert der maximalen Speicherkapazität.
+            </p>
+            <p>
+                Die Messwerte werden alle 20 Minuten per Funk (LoRa) ins Museum gesendet,
+                dort empfangen und über einen Mini-PC ausgewertet.
+            </p>
 
-<button class="accordion-button hidden" onclick="toggleAccordion('year2025')">Jahr 2025</button>
-<div id="year2025" class="accordion-content">
+            <img src="Baum_Sensoren.jpg" alt="Infobild">
 
-    <!-- Januar -->
-    <button class="accordion-button" onclick="toggleAccordion('jan')">Januar</button>
-    <ul id="jan" class="accordion-content">
-        <li><a href="2025/Datensicherung_Januar.csv" target="_blank">Messwerte Januar</a></li>
-    </ul>
+            <br><br>
+            <button class="info-button" onclick="document.getElementById('info').style.display='none'">
+                Schließen
+            </button>
+        </div>
 
-    <!-- Februar -->
-    <button class="accordion-button" onclick="toggleAccordion('feb')">Februar</button>
-    <ul id="feb" class="accordion-content">
-        <li><a href="2025/Datensicherung_Februar.csv" target="_blank">Messwerte Februar</a></li>
-    </ul>
+        <!-- Dein Bild -->
+        <img src="image.svg" alt="Talking Tree" class="center-img">
+    </div>
 
-    <!-- März -->
-    <button class="accordion-button" onclick="toggleAccordion('maerz')">März</button>
-    <ul id="maerz" class="accordion-content">
-        <li><a href="2025/Datensicherung_Maerz.csv" target="_blank">Messwerte März</a></li>
-    </ul>
+    <script>
+        // Tabs
+        const tabs = document.querySelectorAll('.tab-button');
+        const contents = document.querySelectorAll('.tab-content');
 
-    <!-- April -->
-    <button class="accordion-button" onclick="toggleAccordion('april')">April</button>
-    <ul id="april" class="accordion-content">
-        <li><a href="2025/Datensicherung_April.csv" target="_blank">Messwerte April</a></li>
-    </ul>
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
 
-    <!-- Mai -->
-    <button class="accordion-button" onclick="toggleAccordion('mai')">Mai</button>
-    <ul id="mai" class="accordion-content">
-        <li><a href="2025/Datensicherung_Mai.csv" target="_blank">Messwerte Mai</a></li>
-    </ul>
+                contents.forEach(c => c.classList.add('hidden'));
+                const target = document.getElementById(tab.dataset.tab);
+                target.classList.remove('hidden');
+            });
+        });
 
-    <!-- Juni -->
-    <button class="accordion-button" onclick="toggleAccordion('juni')">Juni</button>
-    <ul id="juni" class="accordion-content">
-        <li><a href="2025/Datensicherung_Juni.csv" target="_blank">Messwerte Juni</a></li>
-    </ul>
+        // Akkordeon
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === "block") ? "none" : "block";
+        }
+    </script>
 
-    <!-- Juli -->
-    <button class="accordion-button" onclick="toggleAccordion('juli')">Juli</button>
-    <ul id="juli" class="accordion-content">
-        <li><a href="2025/Datensicherung_Juli.csv" target="_blank">Messwerte Juli</a></li>
-    </ul>
-
-    <!-- August -->
-    <button class="accordion-button" onclick="toggleAccordion('august')">August</button>
-    <ul id="august" class="accordion-content">
-        <li><a href="2025/Datensicherung_August.csv" target="_blank">Messwerte August</a></li>
-    </ul>
-
-    <!-- September -->
-    <button class="accordion-button" onclick="toggleAccordion('september')">September</button>
-    <ul id="september" class="accordion-content">
-        <li><a href="2025/Datensicherung_September.csv" target="_blank">Messwerte September</a></li>
-    </ul>
-
-    <!-- Oktober -->
-    <button class="accordion-button" onclick="toggleAccordion('oktober')">Oktober</button>
-    <ul id="oktober" class="accordion-content">
-        <li><a href="2025/Datensicherung_Oktober.csv" target="_blank">Messwerte Oktober</a></li>
-    </ul>
-
-    <!-- November -->
-    <button class="accordion-button" onclick="toggleAccordion('november')">November</button>
-    <ul id="november" class="accordion-content">
-        <li><a href="2025/Datensicherung_November.csv" target="_blank">Messwerte November</a></li>
-    </ul>
-
-    <!-- Dezember -->
-    <button class="accordion-button" onclick="toggleAccordion('dezember')">Dezember</button>
-    <ul id="dezember" class="accordion-content">
-        <li><a href="2025/Datensicherung_Dezember.csv" target="_blank">Messwerte Dezember</a></li>
-    </ul>
-
-</div>
-
-</div>
-
-<script>
-// Tabs
-const tabs = document.querySelectorAll('.tab-button');
-const contents = document.querySelectorAll('.tab-content');
-
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        contents.forEach(c => c.classList.add('hidden'));
-        const target = document.getElementById(tab.dataset.tab);
-        target.classList.remove('hidden');
-    });
-});
-
-// Akkordeon-Funktion
-function toggleAccordion(id) {
-    const el = document.getElementById(id);
-    el.style.display = (el.style.display === "block") ? "none" : "block";
-}
-</script>
 </body>
+
 </html>
