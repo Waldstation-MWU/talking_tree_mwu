@@ -78,6 +78,10 @@
             background: #45a049;
         }
 
+        img {
+            cursor: zoom-in;
+        }
+
         .tab-section {
             background: #f3e9dd;
             padding: 1.2rem;
@@ -224,7 +228,7 @@
                     Die Bodenfeuchte zeigt, wie viel Wasser dem Baum zur Verfügung steht. Sinkt sie stark ab,
                     gerät der Baum unter Stress: Er schließt seine Spaltöffnungen, spart Wasser und wächst langsamer.
                 </p>
-                <img src="bodenFeuchtigkeit.png" class="responsive">
+                <img src="bodenFeuchtigkeit.png" class="responsive" onclick="openImg(this.src)">
             </div>
 
             <div id="bodenTemp" class="tab-section hidden">
@@ -233,7 +237,7 @@
                     Die Bodentemperatur beeinflusst das Wurzelwachstum und die Aktivität von Bodenorganismen.
                     Zu hohe Temperaturen können die Wasseraufnahme erschweren.
                 </p>
-                <img src="bodenTemperatur.png" class="responsive">
+                <img src="bodenTemperatur.png" class="responsive" onclick="openImg(this.src)">
             </div>
 
             <div id="luftFeuchte" class="tab-section hidden">
@@ -242,7 +246,7 @@
                     Die Luftfeuchtigkeit bestimmt, wie schnell der Baum Wasser über seine Blätter verliert.
                     Bei niedriger Luftfeuchte verdunstet er mehr Wasser und muss mehr aus dem Boden aufnehmen.
                 </p>
-                <img src="luftFeuchtigkeit.png" class="responsive">
+                <img src="luftFeuchtigkeit.png" class="responsive" onclick="openImg(this.src)">
             </div>
 
             <div id="luftTemp" class="tab-section hidden">
@@ -251,10 +255,16 @@
                     Die Lufttemperatur beeinflusst die Verdunstung, den Stoffwechsel und den Wasserbedarf des Baumes.
                     Hitzeperioden führen zu höherem Stress und schnellerer Austrocknung.
                 </p>
-                <img src="luftTemperatur.png" class="responsive">
+                <img src="luftTemperatur.png" class="responsive" onclick="openImg(this.src)">
+                <p>
+                    Vergleicht man die die Temperatur im Wald mit der Außentemperatur, sieht man, dass der Baum oft
+                    kühler bleibt jedoch in der Nacht auch die Temperatur im Wald langsamer sinkt. Das zeigt, dass der
+                    Baum und der Wald eine wichtige Rolle für ein stabiles klein Klima spielen.
+                </p>
+                <img src="luftTemperatur_dif.png" class="responsive" onclick="openImg(this.src)">
             </div>
         </div>
-
+        ""
         <script>
             function showTab(id) {
                 document.querySelectorAll('.tab-section').forEach(div => div.classList.add('hidden'));
@@ -363,6 +373,16 @@
             document.querySelector('.sidebar').classList.toggle('active');
         }
     </script>
+
+    <script>
+        function openImg(src) {
+            document.getElementById("bigImg").src = src;
+            document.getElementById("imgDialog").showModal();
+        }
+    </script>
+    <dialog id="imgDialog" onclick="this.close()">
+        <img id="bigImg">
+    </dialog>
 
 </body>
 
