@@ -12,7 +12,6 @@
             font-family: Arial, sans-serif;
             background: #f0f2f5;
             color: #333;
-            display: flex;
         }
 
         /* --- Seitenmenü --- */
@@ -81,32 +80,87 @@
 
         .tab-section {
             background: #f3e9dd;
-            /* sanftes, warmes Braun */
             padding: 1.2rem;
             border-radius: 8px;
             margin-top: 0;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            /* ❗ FIX */
+            box-sizing: border-box;
+        }
+
+
+        /* Mobile Anpassung */
+        @media (max-width: 768px) {
+
+            /* Sidebar wird schmal */
+            .sidebar {
+                width: 65px;
+                padding: 1rem 0.2rem;
+                align-items: center;
+            }
+
+            /* Titel ausblenden */
+            .sidebar h2 {
+                display: none;
+            }
+
+            /* Menüeinträge = nur Icons */
+            .menu-item {
+                font-size: 1.5rem;
+                text-align: center;
+                padding: 1rem 0;
+                border-bottom: none;
+            }
+
+            /* Text in Menüeinträgen ausblenden */
+            .menu-item span {
+                display: none;
+            }
+
+            /* Content anpassen */
+            .content {
+                margin-left: 75px;
+                padding: 1rem;
+                width: 70vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .tab-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .tab-buttons .button {
+                width: 100%;
+            }
+
+            .tab-section {
+                padding: 1rem;
+                border-radius: 6px;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <!-- Seitenmenü -->
     <div class="sidebar">
         <h2>Talking Tree</h2>
-        <div class="menu-item" onclick="show('start')">🏡 Startseite</div>
-        <div class="menu-item" onclick="show('live')">🌡 Live‑Daten</div>
-        <div class="menu-item" onclick="show('messreihen')">📈 Messreihen</div>
-        <div class="menu-item" onclick="show('info')">🌳 Über den Baum</div>
-        <div class="menu-item" onclick="show('daten')">📂 Daten</div>
-        <div class="menu-item" onclick="show('impressum')">📜 Impressum</div>
+        <div class="menu-item" onclick="show('start')">🏡 <span>Startseite</span></div>
+        <div class="menu-item" onclick="show('live')">🌡 <span>Live-Daten</span></div>
+        <div class="menu-item" onclick="show('messreihen')">📈 <span>Messreihen</span></div>
+        <div class="menu-item" onclick="show('info')">🌳 <span>Über den Baum</span></div>
+        <div class="menu-item" onclick="show('daten')">📂 <span>Daten</span></div>
+        <div class="menu-item" onclick="show('impressum')">📜 <span>Impressum</span></div>
     </div>
+
 
 
     <!-- Inhalte -->
     <div class="content">
-
         <!-- STARTSEITE -->
         <div id="start">
             <h1>Der Talking Tree – Ein Baum, der Geschichten erzählt</h1>
@@ -157,7 +211,7 @@
                 jeweilige Wert über den Zustand des Baumes aussagt.</p>
 
             <!-- Tabs -->
-            <div style="display:flex; gap:10px; margin-bottom:20px;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
                 <button class="button" onclick="showTab('bodenFeuchte')">🌧 Bodenfeuchtigkeit</button>
                 <button class="button" onclick="showTab('bodenTemp')">🌡 Bodentemperatur</button>
                 <button class="button" onclick="showTab('luftFeuchte')">💧 Luftfeuchtigkeit</button>
@@ -305,7 +359,11 @@
             }
         }
     </script>
-
+    <script>
+        function toggleMenu() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+    </script>
 
 </body>
 
