@@ -4,385 +4,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talking Tree – MWU Ebersberg</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f0f2f5;
-            color: #333;
-        }
-
-        /* --- Seitenmenü --- */
-        .sidebar {
-            width: 250px;
-            background: #4CAF50;
-            color: white;
-            height: 100vh;
-            padding: 1rem;
-            box-sizing: border-box;
-            position: fixed;
-        }
-
-        .sidebar h2 {
-            margin-top: 0;
-            font-size: 1.6rem;
-        }
-
-        .menu-item {
-            padding: 0.7rem 0;
-            cursor: pointer;
-            font-size: 1.1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .menu-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* --- Inhaltsbereich --- */
-        .content {
-            margin-left: 270px;
-            padding: 2rem;
-            max-width: 900px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        img.responsive {
-            max-width: 100%;
-            height: auto;
-            margin: 1rem 0;
-            border-radius: 8px;
-        }
-
-        ul {
-            margin-left: 1rem;
-        }
-
-        .button {
-            background: #4CAF50;
-            color: white;
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        .button:hover {
-            background: #45a049;
-        }
-
-        img {
-            cursor: zoom-in;
-        }
-
-        .tab-section {
-            background: #f3e9dd;
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin-top: 0;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-
-        /* Mobile Anpassung */
-        @media (max-width: 768px) {
-
-            /* Sidebar wird schmal */
-            .sidebar {
-                width: 65px;
-                padding: 1rem 0.2rem;
-                align-items: center;
-            }
-
-            /* Titel ausblenden */
-            .sidebar h2 {
-                display: none;
-            }
-
-            /* Menüeinträge = nur Icons */
-            .menu-item {
-                font-size: 1.5rem;
-                text-align: center;
-                padding: 1rem 0;
-                border-bottom: none;
-            }
-
-            /* Text in Menüeinträgen ausblenden */
-            .menu-item span {
-                display: none;
-            }
-
-            /* Content anpassen */
-            .content {
-                margin-left: 75px;
-                padding: 1rem;
-                width: 70vw;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .tab-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .tab-buttons .button {
-                width: 100%;
-            }
-
-            .tab-section {
-                padding: 1rem;
-                border-radius: 6px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Talking Tree - MWU Ebersberg</title>
 </head>
 
 <body>
-    <!-- Seitenmenü -->
-    <div class="sidebar">
-        <h2>Talking Tree</h2>
-        <div class="menu-item" onclick="show('start')">🏡 <span>Startseite</span></div>
-        <div class="menu-item" onclick="show('live')">🌡 <span>Live-Daten</span></div>
-        <div class="menu-item" onclick="show('messreihen')">📈 <span>Messreihen</span></div>
-        <div class="menu-item" onclick="show('info')">🌳 <span>Über den Baum</span></div>
-        <div class="menu-item" onclick="show('daten')">📂 <span>Daten</span></div>
-        <div class="menu-item" onclick="show('impressum')">📜 <span>Impressum</span></div>
+    <nav class="sidebar">
+        <h2>🌳 TalkingTree</h2>
+        <h4>Willkommen bei TalkingTree im Ebersberger Forst</h4>
+        <div class="menu-item active" onclick="show('start', this)">🏡 <span>Startseite</span></div>
+        <div class="menu-item" onclick="show('live', this)">🌡 <span>Live-Daten</span></div>
+        <div class="menu-item" onclick="show('messreihen', this)">📈 <span>Messreihen</span></div>
+        <div class="menu-item" onclick="show('info', this)">📖 <span>Das Projekt</span></div>
+        <div class="menu-item" onclick="show('technik', this)">⚙️ <span>Die Technik</span></div>
+        <div class="menu-item" onclick="show('daten', this)">📂 <span>Archiv</span></div>
+        <div class="menu-item" onclick="show('impressum', this)">📜 <span>Impressum</span></div>
+    </nav>
+
+
+    <main class="main-content">
+        <section id="start">
+            <div class="hero-section">
+                <span class="badge">Live aus dem Ebersberger Stadtwald</span>
+                <h1>Ein Baum, der mit uns spricht.</h1>
+                <p>Unsere Buche ist mehr als nur Holz und Blätter. Erfahren Sie in Echtzeit, wie der Baum auf
+                    Witterungseinflüsse reagiert. Die Messwerte zeigen uns auf eindrückliche Weise, wie stark sich das
+                    Waldklima vom Freilandklima unterscheidet.</p>
+                <div class="img-container">
+                    <img src="Baum_Sensoren.jpg" class="responsive-img_little" alt="Talking Tree">
+                    <img src="image.svg" class="responsive-img_little" alt="Live-Daten">
+                </div>
+                <button class="button" onclick="show('live')">Zu den Live-Daten →</button>
+            </div>
+
+            <div class="grid">
+                <div href="#messreihen" class="card border-orange">
+                    <h3>🌡️ Temperaturregler</h3>
+                    <p class="eyecatcher">
+                        <strong>Bäume sind natürliche "Klimaanlagen".</strong><br>
+                        Sie können ihre Umgebung um bis zu <strong>10&nbsp;°C kühlen</strong>.
+                    </p>
+                    <p>
+                        An heißen Tagen verdunsten sie Wasser über ihre Blätter.
+                        Das verbraucht Sonnenenergie und senkt damit die Lufttemperatur und produziert ein eigenes
+                        "Waldklima".
+                    </p>
+                    <p class="hint">
+                        📝Versuche in den Messreihen zu erkennen, wann die Unterschiede zwischen Wald- und Freilandklima
+                        am stärksten sind.
+                </div>
+
+                <div class="card border-blue">
+                    <h3>💧 Durststrecken</h3>
+                    <p class="eyecatcher">
+                        <strong>Wasserstress beginnt, bevor die Blätter hängen.</strong>
+                    </p>
+                    <p>
+                        Wenn die Bodenfeuchte unter einen kritischen Wert sinkt, können die Wurzeln nicht mehr genug
+                        Wasser aufnehmen. Der Baum beginnt, Wasser zu sparen, indem er die Spaltöffnungen der Blätter
+                        schließt.
+                    </p>
+                    <p>Unsere Sensoren messen den Wassergehalt und damit die Wasserverfügbarkeit in den obersten
+                        Bodenschichten.</p>
+                    <p class="hint">
+                        📝 Beobachte die Entwicklungen der Bodenfeuchte in den Messreihen.
+                        Hat es in den letzten Tagen geregnet? Wie schnell steigt bzw. sinkt die Bodenfeuchte nach einem
+                        Regenfall?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE-DATEN -->
+        <section id="live" class="hidden">
+            <div class="hero-section">
+                <span class="badge">Live aus dem Ebersberger Stadtwald</span>
+                <h1>Live-Daten</h1>
+                <p>Aktualisierung alle 20 Minuten via LoRa-Funk im Museum und jede Stunde hier auf der Website.</p>
+                <div class="side-by-side">
+                    <img src="image.svg" class="responsive-img-styled" alt="Live Grafik">
+                    <div>
+
+                        <div class="card border-orange">
+                            <h3>Temperatur</h3>
+                            <p>In der Regel hat der Wald eine ausgleichende Wirkung auf die Temperatur:
+                            <ul>
+                                <li>Um die <strong>Mittagszeit</strong> ist die Temperatur im Wald durch die Verdunstung
+                                    von Wasser
+                                    niedriger</li>
+                                <li>In der <strong>Nacht</strong> wirken die Baumkronen wie eine "Decke" und vermindern
+                                    die
+                                    Wärmeabstahlung der Erdoberfläche</li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="card border-blue">
+                            <h3>Die Luftfeuchtigkeit</h3>
+                            <p>Durch seine Verdunstung reguliert der Wald die Luftfeuchtigkeit im Vergleich zu
+                                Freilandflächen.
+                                Die relative Luftfeuchtigkeit ist stark an die Temperatur gekoppelt: Je höher die
+                                Temperatur, desto mehr Wasser kann die Luft aufnehmen
+                            </p>
+                        </div>
+                        <div class="card border-brown">
+                            <h3>Bodentemperatur</h3>
+                            <p> Die Tagesschwankungen der Bodentemperatur sind geringer als die Schwankungen der
+                                Lufttemperatur und nehmen mit der Tiefe ab. Das liegt daran, dass der Boden eine höhere
+                                Wärmekapazität hat als die
+                                Luft.
+                            </p>
+                            <p>
+                                Der Waldboden wird durch die Baumkronen vor direkter Sonneneinstrahlung geschützt,
+                                wodurch die Bodentemperatur im Vergleich zum Freiland deutlich ausgeglichener ist.
+                            </p>
+                        </div>
+                        <div class="card border-brown">
+                            <h3>Bodenfeuchte</h3>
+                            <p> Das pflanzenverfügbare Wasser wird im Porensystem des Bodens gespeichert. Je geringer
+                                die Bodenfeuchte, desto mehr muss der Baum seine Verdunstung einschränken.
+                            </p>
+                            <p>
+                                <strong>Beachte:</strong> Die Buche ist ein Herzwurzler, der zwar vor allem in den
+                                obersten
+                                Bodenschichten
+                                Wasser aufnimmt, aber auch Wurzeln in tieferen Bodenschichten besitzt, die durch unsere
+                                Sensoren
+                                nicht abgedeckt werden können.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- MESSREIHEN -->
+        <section id="messreihen" class="hidden">
+            <div class="hero-section">
+                <h1>Messverläufe</h1>
+                <p>Wählen Sie einen Parameter aus und erfahren Sie mehr:</p>
+
+                <div class="tab-navigation">
+                    <button class="tab-btn active" onclick="showTab('lTemp', this)">Lufttemperatur</button>
+                    <button class="tab-btn" onclick="showTab('lFeuchte', this)">Luftfeuchtigkeit</button>
+                    <button class="tab-btn" onclick="showTab('bTemp', this)">Bodentemperatur</button>
+                    <button class="tab-btn" onclick="showTab('bFeuchte', this)">Bodenfeuchtigkeit</button>
+                </div>
+
+                <!-- Tab Inhalte -->
+                <div id="lTemp" class=" tab-content">
+                    <h3>Lufttemperatur (7 Tage)</h3>
+                    <div class="card" style="margin-bottom: 20px;">
+                        <img src="luftTemperatur.png" class="responsive-img">
+                    </div>
+                    <!--                  <div class="card border-brown" style="margin-bottom: 20px;">
+                        <h3>Die Mittagshitze</h3>
+                        <p>Die Lufttemperatur zeigt, wie der Baum die Mittagshitze kühlt. Besonders an heißen Tagen
+                            können die Werte im Wald deutlich niedriger sein als in der Freilandreferenz. Das liegt
+                            daran,
+                            dass der Baum durch die Verdunstung von Wasser an den Blättern die Umgebungsluft kühlt. Je
+                            mehr Wasser verdunstet, desto stärker ist dieser Effekt.
+                        </p>
+                    </div> -->
+                    <div class="card">
+                        <img src="luftTemperatur_dif.png" class="responsive-img">
+                    </div>
+                </div>
+
+                <div id="lFeuchte" class="tab-content hidden">
+                    <h3>Luftfeuchtigkeit (7 Tage)</h3>
+                    <div class="card">
+                        <img src="luftFeuchtigkeit.png" class="responsive-img">
+                    </div>
+
+                </div>
+
+                <div id="bTemp" class="tab-content hidden">
+                    <h3>Bodentemperatur (7 Tage)</h3>
+                    <div class="card">
+                        <img src="bodenTemperatur.png" class="responsive-img">
+                    </div>
+
+                </div>
+
+                <div id="bFeuchte" class="tab-content hidden">
+                    <h3>Bodenfeuchtigkeit (7 Tage)</h3>
+                    <div class="card">
+                        <img src="bodenFeuchtigkeit.png" class="responsive-img">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ÜBER DEN BAUM -->
+        <section id="info" class="hidden">
+            <div class="hero-section">
+                <span class="badge">Eine wichtige Botschaft</span>
+                <h1>Das Projekt "TalkingTree"</h1>
+                <p>
+                    Im Stadtwald nahe des Museums steht ein ganz besonderer Baum: der „Talking Tree“. Diese Buche kann
+                    zwar
+                    nicht sprechen, aber sie zeigt auf faszinierende Weise, wie sich Waldinnenklima und Freilandklima
+                    unterschieden.
+                </p>
+                <p>
+                    In verschiedenen Höhen im Boden wurden Sensoren angebracht, die Temperatur, Luftfeuchtigkeit und
+                    Bodenwassergehalt messen. Ein Referenzsensor am Museum ergänzt die Daten.
+
+                    Die Messwerte werden alle 20 Minuten per LoRa-Funk übertragen und im Museum sowie online
+                    dargestellt.
+                </p>
+                <div class="card border-green">
+                    <h3>Warum das Ganze?</h3>
+                    <p>Wir möchten den Besuchern unsichtbare Vorgänge im Wald sichtbar und greifbar machen. Hatten Sie
+                        nicht schon mal das Gefühl, dass sich die Luft im Wald anders "anfühlt" als im Freiland?
+                        Der Talking Tree zeigt anhand seiner Messdaten einfach aber eindrucksvoll diese Unterschiede.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÜBER Die Technik -->
+        <section id="technik" class="hidden">
+            <div class="hero-section">
+                <span class="badge">Ein Blick auf die Technik</span>
+                <h1>Wie funktioniert das?</h1>
+                <p>
+                    Mit Sensoren am Baum und einem Referenzstandort am Museum messen wir verschiedene Umweltparameter.
+                    Alle 20 Minuten werden die Daten per LoRa-Funk übertragen und in Echtzeit visualisiert. So können
+                    Besucher:innen sofort sehen, wie der Baum auf die aktuellen Wetterbedingungen reagiert.
+                </p>
+                <div class="card border-green">
+                    <h3>Die Sensoren</h3>
+                    <p>Die Sensoren messen die Temperatur, Luftfeuchtigkeit und Bodenfeuchte in verschiedenen Höhen am
+                        Baum und im Boden. Ein Referenzsensor am Museum misst die Freilandbedingungen.
+                    <p>
+                        <strong>Feuchtigkeitsmessung:</strong> Im Inneren sitzt ein elektronisches
+                        Bauelement (Kondensator),
+                        dessen elektrische Eigenschaften von der umgebenden Feuchtigkeit abhängen. Diese minimalen
+                        Änderungen
+                        werden mit mit einem Microcontroller erfasst und ausgewertet.
+                    </p>
+                    <p>
+                        <strong>Temperaturmessung:</strong> Ein integrierter Halbleiter-Sensor registriert die
+                        Umgebungstemperatur.
+                    </p>
+
+
+
+                    </p>
+                </div>
+                <div class="card border-blue">
+                    <h3>Die Funkstrecke</h3>
+                    <p>Die Sensoren senden ihre Daten per LoRa-Funk an eine Basisstaion im Museum. LoRa ist eine
+                        Funktechnologie, die speziell für die Übertragung von kleinen Datenmengen über lange Strecken
+                        entwickelt wurde. Sie ist energieeffizient und ermöglicht es, die Sensoren mit Batterien zu
+                        betreiben, die mehrere Jahre halten können. Eine Technologie, die auch in SmartHomes und der
+                        Landwirtschaft eingesetzt wird.
+                    </p>
+                </div>
+                <div class="card border-orange">
+                    <h3>Die Datenvisualisierung</h3>
+                    <p>Die empfangenen Daten werden in Echtzeit auf der Website und im Museum visualisiert. So können
+                        Besucher:innen sofort sehen, wie der Baum auf die aktuellen Wetterbedingungen reagiert. Die
+                        Visualisierungen zeigen die Temperatur, Luftfeuchtigkeit und Bodenfeuchte in verschiedenen
+                        Höhen am Baum und im Boden sowie die Freilandbedingungen am Museum.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATEN -->
+        <section id="daten" class="hidden">
+            <div class="hero-section align-left">
+                <h1>Datenarchiv</h1>
+                <div id="loginBox">
+                    <h3>🔒 Zugang zum Datenarchiv</h3>
+                    <p>
+                        Hier finden Sie die vollständigen Messdaten des Talking Tree. Der Zugriff ist geschützt, da die
+                        Daten nur für interne Zwecke bestimmt sind. Falls Sie interessiert an Daten und Auswertungen
+                        sind,
+                        kontaktieren Sie bitte
+                        Dr. Rudolf Schierl unter <a href="mailto:<mail@rschierl.de>">mail@rschierl.de</a>
+
+                    </p>
+                    <p>Bitte loggen Sie sich ein:</p>
+                    <input type="password" id="pw"
+                        style="padding: 10px; border-radius: 6px; border: 1px solid #ccc; width: 200px;">
+                    <button class="button" onclick="login()">Login</button>
+                </div>
+                <div id="dataContent" class="hidden">
+                    <p>✅ Zugriff gewährt. <a href="#">Download 2026.csv</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPRESSUM -->
+        <section id="impressum" class="hidden">
+            <div class="hero-section align-left">
+                <h1>Impressum</h1>
+                <h2>Angaben gemäß § 5 TMG</h2>
+                <p>
+                    Förderkreis für das Museum Wald und Umwelt und die Umweltstation Ebersberger Forst e.V. <br>
+                    Marienplatz 1 <br>
+                    Rathaus <br>
+                    85560 Ebersberg <br>
+                </p>
+
+                <p>
+                    Vereinsregister: VR 200694 <br>
+                    Registergericht: Amtsgericht München <br>
+                </p>
+
+                <p>
+                    Vertreten durch: <br>
+                    Dr. Rudolf Schierl <br>
+
+                    Kontakt: <br>
+                    Telefon: 08092 8255-52 <br>
+                    E-Mail: info@foek-ebe.de
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+    </main>
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Vergrößerte Ansicht">
     </div>
-
-
-
-    <!-- Inhalte -->
-    <div class="content">
-        <!-- STARTSEITE -->
-        <div id="start">
-            <h1>Der Talking Tree – Ein Baum, der Geschichten erzählt</h1>
-
-            <p>
-                Im Ebersberger Stadtwald steht eine ganz besondere Buche. Sie kann zwar nicht sprechen,
-                aber sie zeigt uns in Echtzeit, wie es ihr geht: Wie warm es in ihrer Krone ist, wie feucht
-                der Boden ist, ob sie Stress hat oder entspannt wächst.
-            </p>
-
-            <img src="Baum_Sensoren.jpg" class="responsive" alt="Talking Tree">
-
-            <h2>Warum ist das Projekt so spannend?</h2>
-            <p>
-                Der Talking Tree verbindet Natur, Technik und Umweltbildung auf einzigartige Weise.
-                Sensoren messen Temperatur, Luftfeuchtigkeit und Bodenwassergehalt – und machen sichtbar,
-                wie ein Baum auf Wetter, Klima und Trockenheit reagiert.
-            </p>
-
-            <h2>Was kann man hier entdecken?</h2>
-            <ul>
-                <li>Wie sich Temperatur und Feuchtigkeit im Baum verändern</li>
-                <li>Wie der Boden Wasser speichert – und wann es kritisch wird</li>
-                <li>Wie stark ein Baum auf Hitze oder Trockenheit reagiert</li>
-                <li>Wie Klima und Baumleben zusammenhängen</li>
-            </ul>
-
-            <p>
-                Die Daten werden alle 20 Minuten aktualisiert und stehen hier live zur Verfügung.
-            </p>
-
-            <button class="button" onclick="show('live')">
-                Zu den Live‑Daten →
-            </button>
-        </div>
-
-        <!-- Live-Daten -->
-        <div id="live" class="hidden">
-            <h1>Live‑Daten</h1>
-            <p>Messwerte der Buche an der Ludwigshöhe (stündlich aktualisiert).</p>
-            <img src="image.svg" class="responsive" alt="Talking Tree Live-Daten" , style="height:90vh; width:auto;">
-        </div>
-
-        <!-- Messreihen -->
-        <div id="messreihen" class="hidden">
-            <h1>Messreihen der letzten 7 Tage</h1>
-            <p>Hier kannst du die zeitlichen Verläufe der Messwerte betrachten. Jeder Reiter erklärt kurz, was der
-                jeweilige Wert über den Zustand des Baumes aussagt.</p>
-
-            <!-- Tabs -->
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
-                <button class="button" onclick="showTab('bodenFeuchte')">🌧 Bodenfeuchtigkeit</button>
-                <button class="button" onclick="showTab('bodenTemp')">🌡 Bodentemperatur</button>
-                <button class="button" onclick="showTab('luftFeuchte')">💧 Luftfeuchtigkeit</button>
-                <button class="button" onclick="showTab('luftTemp')">🔥 Lufttemperatur</button>
-            </div>
-
-            <!-- Inhalte der Tabs -->
-            <div id="bodenFeuchte" class="tab-section">
-                <h2>Bodenfeuchtigkeit</h2>
-                <p>
-                    Die Bodenfeuchte zeigt, wie viel Wasser dem Baum zur Verfügung steht. Sinkt sie stark ab,
-                    gerät der Baum unter Stress: Er schließt seine Spaltöffnungen, spart Wasser und wächst langsamer.
-                </p>
-                <img src="bodenFeuchtigkeit.png" class="responsive" onclick="openImg(this.src)">
-            </div>
-
-            <div id="bodenTemp" class="tab-section hidden">
-                <h2>Bodentemperatur</h2>
-                <p>
-                    Die Bodentemperatur beeinflusst das Wurzelwachstum und die Aktivität von Bodenorganismen.
-                    Zu hohe Temperaturen können die Wasseraufnahme erschweren.
-                </p>
-                <img src="bodenTemperatur.png" class="responsive" onclick="openImg(this.src)">
-            </div>
-
-            <div id="luftFeuchte" class="tab-section hidden">
-                <h2>Luftfeuchtigkeit</h2>
-                <p>
-                    Die Luftfeuchtigkeit bestimmt, wie schnell der Baum Wasser über seine Blätter verliert.
-                    Bei niedriger Luftfeuchte verdunstet er mehr Wasser und muss mehr aus dem Boden aufnehmen.
-                </p>
-                <img src="luftFeuchtigkeit.png" class="responsive" onclick="openImg(this.src)">
-            </div>
-
-            <div id="luftTemp" class="tab-section hidden">
-                <h2>Lufttemperatur</h2>
-                <p>
-                    Die Lufttemperatur beeinflusst die Verdunstung, den Stoffwechsel und den Wasserbedarf des Baumes.
-                    Hitzeperioden führen zu höherem Stress und schnellerer Austrocknung.
-                </p>
-                <img src="luftTemperatur.png" class="responsive" onclick="openImg(this.src)">
-                <p>
-                    Vergleicht man die die Temperatur im Wald mit der Außentemperatur, sieht man, dass der Baum oft
-                    kühler bleibt jedoch in der Nacht auch die Temperatur im Wald langsamer sinkt. Das zeigt, dass der
-                    Baum und der Wald eine wichtige Rolle für ein stabiles klein Klima spielen.
-                </p>
-                <img src="luftTemperatur_dif.png" class="responsive" onclick="openImg(this.src)">
-            </div>
-        </div>
-        ""
-        <script>
-            function showTab(id) {
-                document.querySelectorAll('.tab-section').forEach(div => div.classList.add('hidden'));
-                document.getElementById(id).classList.remove('hidden');
-            }
-        </script>
-
-        <!-- Über den Baum -->
-        <div id="info" class="hidden">
-            <h1>Über den Talking Tree</h1>
-
-            <p>
-                Im Stadtwald nahe des Museums steht ein ganz besonderer Baum: der <strong>„Talking Tree“</strong>.
-                Diese Buche kann zwar nicht sprechen, aber sie zeigt auf faszinierende Weise, was in ihrer Umgebung
-                passiert.
-            </p>
-
-            <p>
-                In verschiedenen Höhen und im Boden wurden Sensoren angebracht, die Temperatur, Luftfeuchtigkeit
-                und Bodenwassergehalt messen. Ein Referenzsensor am Museum ergänzt die Daten.
-            </p>
-
-            <p>
-                Die Messwerte werden alle 20 Minuten per LoRa-Funk übertragen und im Museum sowie online dargestellt.
-            </p>
-
-            <h2>Pädagogischer Nutzen</h2>
-            <p>
-                Der Talking Tree macht sichtbar, wie stark Temperatur und Feuchtigkeit rund um einen Baum schwanken.
-                Sinkt die Bodenfeuchte, gerät der Baum unter Stress: Er spart Wasser, wächst langsamer und verändert
-                seinen Tagesrhythmus.
-            </p>
-
-            <p>
-                So wird verständlich, welche Folgen Hitzeperioden oder Trockenheit haben und warum Bäume eine wichtige
-                Rolle für ein stabiles Klima spielen.
-            </p>
-        </div>
-
-        <div id="daten" class="hidden">
-            <h1>Datenarchiv</h1>
-
-            <p>
-                Hier findest du die vollständigen Messdaten des Talking Tree.
-                Der Zugriff ist geschützt, da die Daten nur für interne Zwecke bestimmt sind.
-            </p>
-
-            <div id="loginBox">
-                <h3>Anmeldung erforderlich</h3>
-                <p>Bitte Passwort eingeben, um auf die Daten zuzugreifen.</p>
-
-                <input type="password" id="pw" placeholder="Passwort" style="padding:0.5rem; font-size:1rem;">
-                <button class="button" onclick="login()">Anmelden</button>
-
-                <p id="loginError" style="color:red; display:none;">Falsches Passwort</p>
-            </div>
-
-            <div id="dataContent" class="hidden">
-                <h2>Verfügbare Datensätze</h2>
-                <ul>
-                    <li><a href="https://github.com/Waldstation-MWU/talking_tree_mwu/tree/main/2026"
-                            target="_blank">2026</a></li>
-                    <li><a href="https://github.com/Waldstation-MWU/talking_tree_mwu/tree/main/2025"
-                            target="_blank">2025</a></li>
-                    <li><a href="https://github.com/Waldstation-MWU/talking_tree_mwu/tree/main/2024"
-                            target="_blank">2024</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Impressum -->
-        <div id="impressum" class="hidden">
-
-            <h1>Impressum</h1>
-
-            <p>Lorenz Göttlein<br />
-                Falkenstr.46<br />
-                93176 Beratzhausen</p>
-
-            <h2>Kontakt</h2>
-            <p>E-Mail: lorenz.goettlein@online.de</p>
-        </div>
-    </div>
-
-    <script>
-        function show(id) {
-            document.querySelectorAll('.content > div').forEach(div => div.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
-        }
-    </script>
-    <script>
-        function login() {
-            const pw = document.getElementById("pw").value;
-
-            // Einfaches Passwort – später austauschbar
-            if (pw === "MWU_Talking!Tree1") {
-                document.getElementById("loginBox").classList.add("hidden");
-                document.getElementById("dataContent").classList.remove("hidden");
-            } else {
-                document.getElementById("loginError").style.display = "block";
-            }
-        }
-    </script>
-    <script>
-        function toggleMenu() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        }
-    </script>
-
-    <script>
-        function openImg(src) {
-            document.getElementById("bigImg").src = src;
-            document.getElementById("imgDialog").showModal();
-        }
-    </script>
-    <dialog id="imgDialog" onclick="this.close()">
-        <img id="bigImg">
-    </dialog>
+    <script src="script.js"></script>
 
 </body>
 

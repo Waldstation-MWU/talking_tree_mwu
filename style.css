@@ -1,0 +1,500 @@
+/* CSS für Talking Tree - MWU Ebersberg */
+
+:root {
+    /* Zentrale Farbpalette */
+    --primary: #2d6a4f;
+    /* Tiefes Waldgrün */
+    --primary-light: #005f51;
+    --accent: #b7e4c7;
+    /* Helles Mintgrün für Akzente */
+    --accent-orange: #ff9800;
+    /* Für Klima-Highlichts */
+    --accent-blue: #2196f3;
+    /* Für Wasser-Highlights */
+    --accent-brown: #8d6e63;
+    /* Für Bodenfeuchte-Highlights */
+    --sidebar-bg: #59b363;
+    /* Fast schwarzes Grün für Tiefe */
+    --bg: #f8fafc;
+    /* Sauberer Hintergrund */
+    --white: rgb(237, 237, 237);
+    --white_strong: rgba(255, 255, 255);
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --sidebar-text: white;
+
+    /* Abstände & Schatten */
+    --sidebar-width: 280px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Grundlayout */
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    display: flex;
+    overflow-x: hidden;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: white;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    z-index: 1000;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 3.5rem;
+    padding-left: 0.5rem;
+    position: relative;
+}
+
+.sidebar h2::before {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar h2::after {
+    font-size: 0.8rem;
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-top: 12px;
+}
+
+.nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.menu-item {
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.95rem;
+    color: var(--sidebar-text);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu-item:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(8px);
+}
+
+.menu-item.active {
+    background: var(--primary-light);
+    color: var(--white);
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    font-size: 0.75rem;
+    color: var(--sidebar-text);
+    padding: 1rem;
+    opacity: 0.4;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- MAIN CONTENT --- */
+/* Standard für alle Größen (klebt links an der Sidebar) */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex-grow: 1;
+    padding: 3rem;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Fallunterscheidung: Wenn der Bildschirm sehr groß ist (z.B. 4K) */
+@media (min-width: 1400px) {
+    .main-content {
+        /* Zentrierung im restlichen Bereich:
+           (100% - Sidebar) / 2 = Platz rechts und links gleichmäßig verteilen */
+        margin-left: auto;
+        margin-right: auto;
+
+        /* Damit der Content nicht unter die Sidebar rutscht, 
+           muss er trotzdem den Abstand nach links wahren */
+        position: relative;
+        left: calc(var(--sidebar-width) / 2);
+    }
+}
+
+.hero-section {
+    background: var(--white);
+    padding: 4rem 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.badge {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-light);
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--primary);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    max-width: 750px;
+    margin: 0 auto 2.5rem auto;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.img-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.responsive-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+}
+
+.hero-section.align-left {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Schiebt alles nach links */
+    padding: 3rem;
+}
+
+.hero-section.align-left p,
+.hero-section.align-left h1,
+.hero-section.align-left h3 {
+    text-align: left !important;
+    margin-left: 0;
+    margin-right: auto;
+    width: 100%;
+    /* Stellt sicher, dass der Text den Platz nutzt */
+}
+
+
+.responsive-img_little {
+    width: auto;
+    height: 50vh;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-strong);
+}
+
+.responsive-img_little:hover {
+    transform: scale(1.02);
+    /* Kleiner Effekt beim Drüberfahren */
+}
+
+.side-by-side {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    /* Karten oben am Bild ausrichten */
+    margin-top: 2rem;
+    text-align: left;
+    /* Text in den Karten linksbündig für bessere Lesbarkeit */
+}
+
+/* Die linke Seite (das Bild) */
+.responsive-img-styled {
+    flex: 1.5;
+    /* Bild ist etwas breiter als die Karten-Spalte */
+    min-width: 300px;
+    max-height: 90vh;
+    object-fit: contain;
+    position: sticky;
+    top: 20px;
+}
+
+/* Die rechte Seite (beide Karten zusammen) */
+.side-by-side>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* Karten untereinander stapeln */
+    gap: 1.5rem;
+    /* Abstand zwischen den beiden Karten */
+    min-width: 280px;
+}
+
+
+.live-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #d32f2f;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: #d32f2f;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.button {
+    background: var(--primary);
+    color: var(--white);
+    padding: 18px 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(26, 60, 52, 0.2);
+}
+
+.button:hover {
+    background: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(26, 60, 52, 0.3);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--white_strong);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.eyecatcher {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.hint {
+    font-size: 0.9rem;
+    color: var(--white) !important;
+    background-color: var(--primary-light);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin: 15px 0 10px 0;
+    color: var(--primary);
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.border-orange {
+    border-top: 6px solid var(--accent-orange);
+}
+
+.border-blue {
+    border-top: 6px solid var(--accent-blue);
+}
+
+.border-brown {
+    border-top: 6px solid var(--accent-brown);
+}
+
+.border-green {
+    border-top: 6px solid var(--primary-light);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Tab Navigation Container */
+.tab-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.03);
+    padding: 10px;
+    border-radius: var(--radius-md);
+}
+
+/* Die Tab-Buttons */
+.tab-btn {
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    background: var(--white);
+    color: var(--primary);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Verstecken der Tabs */
+.tab-content.hidden {
+    display: none !important;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 80px;
+    }
+
+    .responsive-img-styled {
+        position: inherit;
+    }
+
+    .sidebar h2,
+    .sidebar h4,
+    .menu-item span:last-child,
+    .sidebar-footer {
+        display: none;
+    }
+
+    .sidebar {
+        padding: 2rem 0.5rem;
+    }
+
+    .menu-item {
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .main-content {
+        margin-left: 80px;
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+}
+
+/* Das verdunkelte Hintergrund-Overlay */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Das vergrößerte Bild */
+.lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-md);
+    cursor: default;
+}
+
+/* Mauszeiger-Feedback für anklickbare Bilder */
+.responsive-img,
+.responsive-img-styled {
+    cursor: zoom-in;
+}
