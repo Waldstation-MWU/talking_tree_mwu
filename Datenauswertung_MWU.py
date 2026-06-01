@@ -68,7 +68,7 @@ measurements_to_plot = ['%rF']  # Diese Liste kannst du anpassen
 plot_sensors_and_measurements(df, sensors_to_plot, measurements_to_plot,f"B1_SHT_Sensoren_Luftfeuchtigkeit_{monat}.pdf")
 
 sensors_to_plot = ['B1_DC4/1']  # Diese Liste kannst du anpassen
-measurements_to_plot = ['device_frmpayload_data_DC4_1_circumference']  # Diese Liste kannst du anpassen
+measurements_to_plot = ['mm']  # Diese Liste kannst du anpassen
 
 # Plot erstellen
 plot_sensors_and_measurements(df, sensors_to_plot, measurements_to_plot,f"B1_Umfang_{monat}.pdf")
